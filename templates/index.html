@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check ID Free Fire Bạch Hoàng</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔥 Check ID Free Fire Bạch Hoàng</h1>
+            <p>Tra cứu đầy đủ thông tin người chơi Free Fire - Thống kê, Hồ sơ, Trang phục, Clan, Rank</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('stats', this)">📊 Thống kê</button>
+            <button class="tab-button" onclick="showTab('profile', this)">👤 Hồ sơ</button>
+            <button class="tab-button" onclick="showTab('search', this)">🔍 Tìm kiếm</button>
+            <button class="tab-button" onclick="showTab('api-docs', this)">📖 Hướng dẫn API</button>
+        </div>
+
+        <div id="stats-tab" class="tab-content active">
+            <div class="card">
+                <h2>Tra cứu thống kê người chơi</h2>
+                <form id="stats-form">
+                    <div class="form-group">
+                        <label for="stats-server">Server:</label>
+                        <select id="stats-server" required>
+                            <option value="IND">India (IND)</option>
+                            <option value="SG">Singapore (SG)</option>
+                            <option value="VN">Vietnam (VN)</option>
+                            <option value="TH">Thailand (TH)</option>
+                            <option value="ID">Indonesia (ID)</option>
+                            <option value="BR">Brazil (BR)</option>
+                            <option value="RU">Russia (RU)</option>
+                            <option value="US">United States (US)</option>
+                            <option value="TW">Taiwan (TW)</option>
+                            <option value="ME">Middle East (ME)</option>
+                            <option value="PK">Pakistan (PK)</option>
+                            <option value="CIS">CIS (CIS)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stats-uid">Player UID:</label>
+                        <input type="text" id="stats-uid" placeholder="Nhập UID người chơi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gamemode">Chế độ chơi:</label>
+                        <select id="gamemode">
+                            <option value="br">Battle Royale</option>
+                            <option value="cs">Clash Squad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="matchmode">Loại trận:</label>
+                        <select id="matchmode">
+                            <option value="CAREER">Tổng hợp</option>
+                            <option value="RANKED">Rank</option>
+                            <option value="NORMAL">Thường</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Tra cứu</button>
+                </form>
+            </div>
+            <div id="stats-result" class="result-container"></div>
+        </div>
+
+        <div id="profile-tab" class="tab-content">
+            <div class="card">
+                <h2>Xem hồ sơ cá nhân</h2>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-server">Server:</label>
+                        <select id="profile-server" required>
+                            <option value="IND">India (IND)</option>
+                            <option value="SG">Singapore (SG)</option>
+                            <option value="VN">Vietnam (VN)</option>
+                            <option value="TH">Thailand (TH)</option>
+                            <option value="ID">Indonesia (ID)</option>
+                            <option value="BR">Brazil (BR)</option>
+                            <option value="RU">Russia (RU)</option>
+                            <option value="US">United States (US)</option>
+                            <option value="TW">Taiwan (TW)</option>
+                            <option value="ME">Middle East (ME)</option>
+                            <option value="PK">Pakistan (PK)</option>
+                            <option value="CIS">CIS (CIS)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-uid">Player UID:</label>
+                        <input type="text" id="profile-uid" placeholder="Nhập UID người chơi" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Xem hồ sơ</button>
+                </form>
+            </div>
+            <div id="profile-result" class="result-container"></div>
+        </div>
+
+        <div id="search-tab" class="tab-content">
+            <div class="card">
+                <h2>Tìm kiếm người chơi</h2>
+                <form id="search-form">
+                    <div class="form-group">
+                        <label for="search-server">Server:</label>
+                        <select id="search-server" required>
+                            <option value="IND">India (IND)</option>
+                            <option value="SG">Singapore (SG)</option>
+                            <option value="VN">Vietnam (VN)</option>
+                            <option value="TH">Thailand (TH)</option>
+                            <option value="ID">Indonesia (ID)</option>
+                            <option value="BR">Brazil (BR)</option>
+                            <option value="RU">Russia (RU)</option>
+                            <option value="US">United States (US)</option>
+                            <option value="TW">Taiwan (TW)</option>
+                            <option value="ME">Middle East (ME)</option>
+                            <option value="PK">Pakistan (PK)</option>
+                            <option value="CIS">CIS (CIS)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="keyword">Từ khóa tìm kiếm:</label>
+                        <input type="text" id="keyword" placeholder="Nhập tên người chơi (tối thiểu 3 ký tự)" required minlength="3">
+                    </div>
+                    <button type="submit" class="btn-primary">Tìm kiếm</button>
+                </form>
+            </div>
+            <div id="search-result" class="result-container"></div>
+        </div>
+
+        <div id="api-docs-tab" class="tab-content">
+            <div class="card">
+                <h2>📖 Hướng dẫn sử dụng API</h2>
+                <p>API này cung cấp các endpoint để tra cứu thông tin Free Fire cho bot Messenger và Discord của bạn.</p>
+                
+                <h3>🔗 Base URL</h3>
+                <div class="code-block">
+                    <code id="base-url">https://your-app-name.up.railway.app</code>
+                    <button onclick="copyToClipboard('base-url')" class="copy-btn">📋 Copy</button>
+                </div>
+
+                <h3>📍 Các Endpoint</h3>
+                
+                <div class="endpoint-section">
+                    <h4>1. Lấy thống kê người chơi</h4>
+                    <div class="code-block">
+                        <code>GET /get_player_stats?server=IND&uid=123456789&gamemode=br&matchmode=RANKED</code>
+                    </div>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><code>server</code> - Server khu vực (IND, VN, SG, TH, ID, BR, RU, US, TW, ME, PK, CIS)</li>
+                        <li><code>uid</code> - ID người chơi (bắt buộc)</li>
+                        <li><code>gamemode</code> - Chế độ chơi: br (Battle Royale) hoặc cs (Clash Squad)</li>
+                        <li><code>matchmode</code> - Loại trận: CAREER, RANKED, NORMAL</li>
+                    </ul>
+                </div>
+
+                <div class="endpoint-section">
+                    <h4>2. Lấy hồ sơ cá nhân</h4>
+                    <div class="code-block">
+                        <code>GET /get_player_personal_show?server=IND&uid=123456789</code>
+                    </div>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><code>server</code> - Server khu vực</li>
+                        <li><code>uid</code> - ID người chơi (bắt buộc)</li>
+                    </ul>
+                    <p>Trả về: Tên, level, clan, rank, trang phục, vũ khí, và nhiều thông tin khác</p>
+                </div>
+
+                <div class="endpoint-section">
+                    <h4>3. Tìm kiếm người chơi</h4>
+                    <div class="code-block">
+                        <code>GET /get_search_account_by_keyword?server=IND&keyword=PlayerName</code>
+                    </div>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><code>server</code> - Server khu vực</li>
+                        <li><code>keyword</code> - Tên người chơi (tối thiểu 3 ký tự)</li>
+                    </ul>
+                </div>
+
+                <h3>🤖 Tích hợp với Bot Messenger (Node.js)</h3>
+                <p><strong>Ví dụ 1: Check thông tin đầy đủ</strong></p>
+                <div class="code-block">
+                    <pre><code>// File: index.js - Bot Messenger
+const axios = require('axios');
+
+const API_URL = 'https://your-app-name.up.railway.app';
+
+// Lấy tên rank dựa trên rank ID
+function getRankName(rank) {
+    const ranks = {
+        1: 'Bronze I', 2: 'Bronze II', 3: 'Bronze III',
+        4: 'Silver I', 5: 'Silver II', 6: 'Silver III',
+        7: 'Gold I', 8: 'Gold II', 9: 'Gold III', 10: 'Gold IV',
+        11: 'Platinum I', 12: 'Platinum II', 13: 'Platinum III', 14: 'Platinum IV',
+        15: 'Diamond I', 16: 'Diamond II', 17: 'Diamond III', 18: 'Diamond IV',
+        19: 'Heroic'
+    };
+    return ranks[rank] || `Rank ${rank}`;
+}
+
+// Check ID đầy đủ
+async function handleCheckFF(senderId, uid, server = 'VN') {
+    try {
+        // Lấy thông tin cá nhân
+        const profileRes = await axios.get(`${API_URL}/get_player_personal_show`, {
+            params: { server, uid }
+        });
+        
+        const data = profileRes.data;
+        const basic = data.basicinfo || data;
+        const clan = data.clanbasicinfo || data.guildinfo || {};
+        
+        // Format message đầy đủ
+        const message = `
+🔥 FREE FIRE - THÔNG TIN CHI TIẾT
+
+👤 Thông tin cơ bản:
+• Tên: ${basic.nickname || basic.accountname || 'N/A'}
+• UID: ${basic.accountid || uid}
+• Khu vực: ${basic.region || server}
+• Level: ${basic.level || 'N/A'}
+• EXP: ${(basic.exp || 0).toLocaleString()}
+• Likes: ${(basic.liked || 0).toLocaleString()}
+
+🏆 Rank Battle Royale:
+• Rank hiện tại: ${getRankName(basic.rank)} (${basic.rankingpoints || 0} điểm)
+• Rank cao nhất: ${getRankName(basic.maxrank)}
+• ${basic.showbrrank ? '✅ Hiển thị rank' : '❌ Ẩn rank'}
+
+⚔️ Rank Clash Squad:
+• Rank hiện tại: ${getRankName(basic.csrank)} (${basic.csrankingpoints || 0} điểm)
+• Rank cao nhất: ${getRankName(basic.csmaxrank)}
+• ${basic.showcsrank ? '✅ Hiển thị rank' : '❌ Ẩn rank'}
+
+🎖️ Thành tích:
+• Huy hiệu: ${basic.badgecnt || 0} cái
+• Badge ID: ${basic.badgeid || 'N/A'}
+• ${basic.haselitepass ? '👑 Có Elite Pass' : '❌ Chưa có Elite Pass'}
+• Season: ${basic.seasonid || 'N/A'}
+
+👥 Clan: ${clan.clanname || 'Chưa vào clan'}
+${clan.clanid ? `• ID Clan: ${clan.clanid}
+• Level Clan: ${clan.clanlevel || 'N/A'}
+• Thành viên: ${clan.membernum}/${clan.capacity}
+• ${basic.accountid === clan.captainid ? '👑 Clan Master' : '👤 Thành viên'}` : ''}
+
+🎨 Trang bị hiển thị:
+• Avatar ID: ${data.profileinfo?.avatarid || 'N/A'}
+• Banner: ${basic.bannerid || 'N/A'}
+• Headpic: ${basic.headpic || 'N/A'}
+• Weapon Skins: ${basic.weaponskinshows?.join(', ') || 'Không có'}
+
+📅 Tài khoản:
+• Tạo lúc: ${basic.createat ? new Date(basic.createat * 1000).toLocaleDateString('vi-VN') : 'N/A'}
+• Login cuối: ${basic.lastloginat ? new Date(basic.lastloginat * 1000).toLocaleDateString('vi-VN') : 'N/A'}
+        `.trim();
+        
+        await sendMessage(senderId, message);
+        
+    } catch (error) {
+        console.error('Lỗi:', error);
+        await sendMessage(senderId, '❌ Không tìm thấy ID hoặc có lỗi xảy ra!');
+    }
+}
+
+// Check thống kê trận đấu
+async function handleStatsFF(senderId, uid, server = 'VN', gamemode = 'br') {
+    try {
+        const response = await axios.get(`${API_URL}/get_player_stats`, {
+            params: { server, uid, gamemode, matchmode: 'RANKED' }
+        });
+        
+        const stats = response.data.data;
+        
+        // Lấy stats tùy theo gamemode
+        const soloStats = stats.solostats || {};
+        const duoStats = stats.duostats || {};
+        const squadStats = stats.quadstats || {};
+        
+        const message = `
+📊 THỐNG KÊ ${gamemode.toUpperCase()} RANKED
+
+👤 Solo:
+• Trận: ${soloStats.gamesplayed || 0} | Thắng: ${soloStats.wins || 0}
+• K/D: ${soloStats.kills || 0}/${soloStats.detailedstats?.deaths || 0}
+• Damage: ${(soloStats.detailedstats?.damage || 0).toLocaleString()}
+• Headshots: ${soloStats.detailedstats?.headshots || 0}
+
+👥 Duo:
+• Trận: ${duoStats.gamesplayed || 0} | Thắng: ${duoStats.wins || 0}
+• K/D: ${duoStats.kills || 0}/${duoStats.detailedstats?.deaths || 0}
+• Damage: ${(duoStats.detailedstats?.damage || 0).toLocaleString()}
+
+👨‍👩‍👧‍👦 Squad:
+• Trận: ${squadStats.gamesplayed || 0} | Thắng: ${squadStats.wins || 0}
+• K/D: ${squadStats.kills || 0}/${squadStats.detailedstats?.deaths || 0}
+• Damage: ${(squadStats.detailedstats?.damage || 0).toLocaleString()}
+        `.trim();
+        
+        await sendMessage(senderId, message);
+        
+    } catch (error) {
+        await sendMessage(senderId, '❌ Không thể lấy thống kê!');
+    }
+}
+
+// Xử lý message
+function handleMessage(event) {
+    const senderId = event.sender.id;
+    const text = event.message.text;
+    
+    // /check [UID] - Check thông tin
+    if (text.startsWith('/check ')) {
+        const uid = text.split(' ')[1];
+        if (uid && !isNaN(uid)) {
+            handleCheckFF(senderId, uid);
+        } else {
+            sendMessage(senderId, '❌ Định dạng: /check [UID]');
+        }
+    }
+    
+    // /stats [UID] [gamemode] - Check thống kê
+    else if (text.startsWith('/stats ')) {
+        const parts = text.split(' ');
+        const uid = parts[1];
+        const gamemode = parts[2] || 'br'; // br hoặc cs
+        if (uid && !isNaN(uid)) {
+            handleStatsFF(senderId, uid, 'VN', gamemode);
+        } else {
+            sendMessage(senderId, '❌ Định dạng: /stats [UID] [br/cs]');
+        }
+    }
+}
+
+module.exports = { handleCheckFF, handleStatsFF, handleMessage };
+</code></pre>
+                </div>
+
+                <h3>🤖 Tích hợp với Bot Discord (Node.js)</h3>
+                <p><strong>Ví dụ 1: Command /checkff - Thông tin đầy đủ</strong></p>
+                <div class="code-block">
+                    <pre><code>// File: commands/checkff.js
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const axios = require('axios');
+
+const API_URL = 'https://your-app-name.up.railway.app';
+
+// Lấy tên rank
+function getRankName(rank) {
+    const ranks = {
+        1: 'Bronze I', 2: 'Bronze II', 3: 'Bronze III',
+        4: 'Silver I', 5: 'Silver II', 6: 'Silver III',
+        7: 'Gold I', 8: 'Gold II', 9: 'Gold III', 10: 'Gold IV',
+        11: 'Platinum I', 12: 'Platinum II', 13: 'Platinum III', 14: 'Platinum IV',
+        15: 'Diamond I', 16: 'Diamond II', 17: 'Diamond III', 18: 'Diamond IV',
+        19: 'Heroic'
+    };
+    return ranks[rank] || `Rank ${rank}`;
+}
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('checkff')
+        .setDescription('Check thông tin Free Fire đầy đủ')
+        .addStringOption(option =>
+            option.setName('uid')
+                .setDescription('ID Free Fire')
+                .setRequired(true))
+        .addStringOption(option =>
+            option.setName('server')
+                .setDescription('Khu vực server')
+                .setRequired(false)
+                .addChoices(
+                    { name: 'Vietnam', value: 'VN' },
+                    { name: 'Singapore', value: 'SG' },
+                    { name: 'Thailand', value: 'TH' },
+                    { name: 'Indonesia', value: 'ID' },
+                    { name: 'India', value: 'IND' }
+                )),
+    
+    async execute(interaction) {
+        await interaction.deferReply();
+        
+        const uid = interaction.options.getString('uid');
+        const server = interaction.options.getString('server') || 'VN';
+        
+        try {
+            const response = await axios.get(`${API_URL}/get_player_personal_show`, {
+                params: { server, uid }
+            });
+            
+            const data = response.data;
+            const basic = data.basicinfo || data;
+            const clan = data.clanbasicinfo || data.guildinfo || {};
+            
+            // Tạo embed đầy đủ
+            const embed = new EmbedBuilder()
+                .setColor(0xFF6B00)
+                .setTitle('🔥 FREE FIRE - THÔNG TIN CHI TIẾT')
+                .setThumbnail('https://i.imgur.com/freefire-icon.png') // Thay bằng icon FF
+                .addFields(
+                    { 
+                        name: '👤 Thông tin cơ bản', 
+                        value: `**Tên:** ${basic.nickname || basic.accountname || 'N/A'}\n` +
+                               `**UID:** ${basic.accountid || uid}\n` +
+                               `**Khu vực:** ${basic.region || server}\n` +
+                               `**Level:** ${basic.level || 'N/A'}\n` +
+                               `**EXP:** ${(basic.exp || 0).toLocaleString()}\n` +
+                               `**Likes:** ${(basic.liked || 0).toLocaleString()}`,
+                        inline: false
+                    },
+                    {
+                        name: '🏆 Battle Royale Rank',
+                        value: `**Rank:** ${getRankName(basic.rank)}\n` +
+                               `**Điểm:** ${basic.rankingpoints || 0}\n` +
+                               `**Cao nhất:** ${getRankName(basic.maxrank)}\n` +
+                               `**Hiển thị:** ${basic.showbrrank ? '✅' : '❌'}`,
+                        inline: true
+                    },
+                    {
+                        name: '⚔️ Clash Squad Rank',
+                        value: `**Rank:** ${getRankName(basic.csrank)}\n` +
+                               `**Điểm:** ${basic.csrankingpoints || 0}\n` +
+                               `**Cao nhất:** ${getRankName(basic.csmaxrank)}\n` +
+                               `**Hiển thị:** ${basic.showcsrank ? '✅' : '❌'}`,
+                        inline: true
+                    },
+                    {
+                        name: '🎖️ Thành tích',
+                        value: `**Huy hiệu:** ${basic.badgecnt || 0} cái\n` +
+                               `**Badge ID:** ${basic.badgeid || 'N/A'}\n` +
+                               `**Elite Pass:** ${basic.haselitepass ? '👑 Có' : '❌ Không'}\n` +
+                               `**Season:** ${basic.seasonid || 'N/A'}`,
+                        inline: false
+                    },
+                    {
+                        name: '👥 Clan',
+                        value: clan.clanname ? 
+                               `**Tên:** ${clan.clanname}\n` +
+                               `**ID:** ${clan.clanid}\n` +
+                               `**Level:** ${clan.clanlevel}\n` +
+                               `**Thành viên:** ${clan.membernum}/${clan.capacity}\n` +
+                               `**Vai trò:** ${basic.accountid === clan.captainid ? '👑 Master' : '👤 Member'}`
+                               : 'Chưa vào clan',
+                        inline: false
+                    },
+                    {
+                        name: '🎨 Trang bị',
+                        value: `**Avatar:** ${data.profileinfo?.avatarid || 'N/A'}\n` +
+                               `**Banner:** ${basic.bannerid || 'N/A'}\n` +
+                               `**Weapon Skins:** ${basic.weaponskinshows?.slice(0, 3).join(', ') || 'Không'}`,
+                        inline: false
+                    }
+                )
+                .setFooter({ text: `Check ID Free Fire Bạch Hoàng | UID: ${uid}` })
+                .setTimestamp();
+            
+            await interaction.editReply({ embeds: [embed] });
+            
+        } catch (error) {
+            console.error('Lỗi:', error);
+            await interaction.editReply({
+                content: '❌ Không tìm thấy ID hoặc có lỗi xảy ra!',
+                ephemeral: true
+            });
+        }
+    }
+};
+</code></pre>
+                </div>
+                
+                <p><strong>Ví dụ 2: Command /statsff - Thống kê trận đấu</strong></p>
+                <div class="code-block">
+                    <pre><code>// File: commands/statsff.js
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const axios = require('axios');
+
+const API_URL = 'https://your-app-name.up.railway.app';
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('statsff')
+        .setDescription('Xem thống kê trận đấu Free Fire')
+        .addStringOption(option =>
+            option.setName('uid')
+                .setDescription('ID Free Fire')
+                .setRequired(true))
+        .addStringOption(option =>
+            option.setName('gamemode')
+                .setDescription('Chế độ chơi')
+                .setRequired(false)
+                .addChoices(
+                    { name: 'Battle Royale', value: 'br' },
+                    { name: 'Clash Squad', value: 'cs' }
+                ))
+        .addStringOption(option =>
+            option.setName('matchmode')
+                .setDescription('Loại trận')
+                .setRequired(false)
+                .addChoices(
+                    { name: 'Ranked', value: 'RANKED' },
+                    { name: 'Normal', value: 'NORMAL' },
+                    { name: 'Tổng hợp', value: 'CAREER' }
+                ))
+        .addStringOption(option =>
+            option.setName('server')
+                .setDescription('Server')
+                .setRequired(false)
+                .addChoices(
+                    { name: 'Vietnam', value: 'VN' },
+                    { name: 'Singapore', value: 'SG' },
+                    { name: 'Thailand', value: 'TH' }
+                )),
+    
+    async execute(interaction) {
+        await interaction.deferReply();
+        
+        const uid = interaction.options.getString('uid');
+        const server = interaction.options.getString('server') || 'VN';
+        const gamemode = interaction.options.getString('gamemode') || 'br';
+        const matchmode = interaction.options.getString('matchmode') || 'RANKED';
+        
+        try {
+            const response = await axios.get(`${API_URL}/get_player_stats`, {
+                params: { server, uid, gamemode, matchmode }
+            });
+            
+            const stats = response.data.data;
+            const soloStats = stats.solostats || {};
+            const duoStats = stats.duostats || {};
+            const squadStats = stats.quadstats || {};
+            
+            const embed = new EmbedBuilder()
+                .setColor(0xFF6B00)
+                .setTitle(`📊 Thống kê ${gamemode.toUpperCase()} - ${matchmode}`)
+                .setDescription(`**UID:** ${uid} | **Server:** ${server}`)
+                .addFields(
+                    {
+                        name: '👤 Solo',
+                        value: `**Trận:** ${soloStats.gamesplayed || 0}\n` +
+                               `**Thắng:** ${soloStats.wins || 0}\n` +
+                               `**Kills:** ${soloStats.kills || 0}\n` +
+                               `**Deaths:** ${soloStats.detailedstats?.deaths || 0}\n` +
+                               `**K/D:** ${soloStats.kills && soloStats.detailedstats?.deaths ? 
+                                   (soloStats.kills / soloStats.detailedstats.deaths).toFixed(2) : '0.00'}\n` +
+                               `**Damage:** ${(soloStats.detailedstats?.damage || 0).toLocaleString()}\n` +
+                               `**Headshots:** ${soloStats.detailedstats?.headshots || 0}`,
+                        inline: true
+                    },
+                    {
+                        name: '👥 Duo',
+                        value: `**Trận:** ${duoStats.gamesplayed || 0}\n` +
+                               `**Thắng:** ${duoStats.wins || 0}\n` +
+                               `**Kills:** ${duoStats.kills || 0}\n` +
+                               `**Deaths:** ${duoStats.detailedstats?.deaths || 0}\n` +
+                               `**K/D:** ${duoStats.kills && duoStats.detailedstats?.deaths ? 
+                                   (duoStats.kills / duoStats.detailedstats.deaths).toFixed(2) : '0.00'}\n` +
+                               `**Damage:** ${(duoStats.detailedstats?.damage || 0).toLocaleString()}\n` +
+                               `**Headshots:** ${duoStats.detailedstats?.headshots || 0}`,
+                        inline: true
+                    },
+                    {
+                        name: '👨‍👩‍👧‍👦 Squad',
+                        value: `**Trận:** ${squadStats.gamesplayed || 0}\n` +
+                               `**Thắng:** ${squadStats.wins || 0}\n` +
+                               `**Kills:** ${squadStats.kills || 0}\n` +
+                               `**Deaths:** ${squadStats.detailedstats?.deaths || 0}\n` +
+                               `**K/D:** ${squadStats.kills && squadStats.detailedstats?.deaths ? 
+                                   (squadStats.kills / squadStats.detailedstats.deaths).toFixed(2) : '0.00'}\n` +
+                               `**Damage:** ${(squadStats.detailedstats?.damage || 0).toLocaleString()}\n` +
+                               `**Headshots:** ${squadStats.detailedstats?.headshots || 0}`,
+                        inline: true
+                    }
+                )
+                .setFooter({ text: 'Check ID Free Fire Bạch Hoàng' })
+                .setTimestamp();
+            
+            await interaction.editReply({ embeds: [embed] });
+            
+        } catch (error) {
+            console.error('Lỗi:', error);
+            await interaction.editReply({
+                content: '❌ Không thể lấy thống kê! Vui lòng kiểm tra lại UID.',
+                ephemeral: true
+            });
+        }
+    }
+};
+</code></pre>
+                </div>
+
+                <h3>📦 Cài đặt Dependencies</h3>
+                <div class="code-block">
+                    <pre><code># Cho cả bot Messenger và Discord
+npm install axios
+
+# Riêng cho bot Discord
+npm install discord.js
+
+# Riêng cho bot Messenger (Facebook)
+npm install express body-parser
+</code></pre>
+                </div>
+
+                <h3>⚙️ Setup và Deploy</h3>
+                <ol>
+                    <li>Clone hoặc fork project này</li>
+                    <li>Tạo file <code>AccountConfiguration.json</code> trong folder <code>Configuration/</code></li>
+                    <li>Deploy lên Railway:
+                        <ul>
+                            <li>Tạo account tại <a href="https://railway.app" target="_blank">railway.app</a></li>
+                            <li>Connect với GitHub repository của bạn</li>
+                            <li>Railway sẽ tự động deploy</li>
+                            <li>Copy URL được tạo và thay vào <code>API_URL</code> trong bot</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>💡 Lưu ý</h3>
+                <ul>
+                    <li>API này hoàn toàn miễn phí sử dụng</li>
+                    <li>Không cần API key để sử dụng</li>
+                    <li>Response trả về dạng JSON</li>
+                    <li>Hỗ trợ CORS cho tất cả domain</li>
+                    <li>Có rate limiting để tránh spam</li>
+                </ul>
+
+                <h3>📞 Hỗ trợ</h3>
+                <p>Nếu có vấn đề, hãy liên hệ qua GitHub Issues hoặc Messenger.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Check ID Free Fire Bạch Hoàng - API by 0xMe - Powered by Railway</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
